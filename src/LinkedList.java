@@ -76,13 +76,15 @@ public class LinkedList<type> implements List<type> {
     @Override
     public void remove(int index) {
         Node<type> current = head;
-        Node<type> before = null;
-        for (int i = 0; i < index; i++) {
-            before = current;
-            current = current.getNext();
-        }
 
-        before.setNext(current.getNext());
+        if (index == 0) {
+            head = head.getNext();
+        } else {
+            for (int i = 0; i < index - 1; i++) {
+                current = current.getNext();
+            }
+            current.setNext(current.getNext().getNext());
+        }
     }
 
     ///Returns the number of elements in the list.
